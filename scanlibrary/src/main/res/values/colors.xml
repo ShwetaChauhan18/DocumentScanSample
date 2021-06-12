@@ -8,5 +8,6 @@
     <color name="polygonViewCircleStrokeColor">#ff59a9ff</color>
     <color name="polygonViewCircleBackground">#90e5f8ff</color>
     <color name="colorPrimary">#253c5b</color>
+    <color name="full_dim">#24e5f8ff</color>
 
 </resources>

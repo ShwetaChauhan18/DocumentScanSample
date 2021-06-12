@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import java.io.IOException
 import kotlinx.android.synthetic.main.result_layout.BWMode
@@ -39,6 +40,29 @@ class ResultFragmentKotlin : Fragment() {
         originalButton.setOnClickListener {
             try {
                 showProgressDialog(resources.getString(R.string.applying_filter))
+
+                originalButton.setBackgroundColor(
+                    ContextCompat.getColor(
+                        requireContext(), R.color.full_dim
+                    )
+                )
+                magicColor.setBackgroundColor(
+                    ContextCompat.getColor(
+                        requireContext(), android.R.color.transparent
+                    )
+                )
+                grayMode.setBackgroundColor(
+                    ContextCompat.getColor(
+                        requireContext(), android.R.color.transparent
+                    )
+                )
+                BWMode.setBackgroundColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        android.R.color.transparent
+                    )
+                )
+
                 transformed = original
                 scannedImage.setImageBitmap(original)
                 dismissDialog()
@@ -50,6 +74,29 @@ class ResultFragmentKotlin : Fragment() {
 
         magicColor.setOnClickListener { v ->
             showProgressDialog(resources.getString(R.string.applying_filter))
+
+            originalButton.setBackgroundColor(
+                ContextCompat.getColor(
+                    requireContext(), android.R.color.transparent
+                )
+            )
+            magicColor.setBackgroundColor(
+                ContextCompat.getColor(
+                    requireContext(), R.color.full_dim
+                )
+            )
+            grayMode.setBackgroundColor(
+                ContextCompat.getColor(
+                    requireContext(), android.R.color.transparent
+                )
+            )
+            BWMode.setBackgroundColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    android.R.color.transparent
+                )
+            )
+
             AsyncTask.execute {
                 try {
                     transformed = (activity as ScanActivity).getMagicColorBitmap(original)
@@ -72,6 +119,29 @@ class ResultFragmentKotlin : Fragment() {
 
         grayMode.setOnClickListener { v ->
             showProgressDialog(resources.getString(R.string.applying_filter))
+
+            originalButton.setBackgroundColor(
+                ContextCompat.getColor(
+                    requireContext(), android.R.color.transparent
+                )
+            )
+            magicColor.setBackgroundColor(
+                ContextCompat.getColor(
+                    requireContext(), android.R.color.transparent
+                )
+            )
+            grayMode.setBackgroundColor(
+                ContextCompat.getColor(
+                    requireContext(), R.color.full_dim
+                )
+            )
+            BWMode.setBackgroundColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    android.R.color.transparent
+                )
+            )
+
             AsyncTask.execute {
                 try {
                     transformed = (activity as ScanActivity).getGrayBitmap(original)
@@ -94,6 +164,24 @@ class ResultFragmentKotlin : Fragment() {
 
         BWMode.setOnClickListener {
             showProgressDialog(resources.getString(R.string.applying_filter))
+
+            originalButton.setBackgroundColor(
+                ContextCompat.getColor(
+                    requireContext(), android.R.color.transparent
+                )
+            )
+            magicColor.setBackgroundColor(
+                ContextCompat.getColor(
+                    requireContext(), android.R.color.transparent
+                )
+            )
+            grayMode.setBackgroundColor(
+                ContextCompat.getColor(
+                    requireContext(), android.R.color.transparent
+                )
+            )
+            BWMode.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.full_dim))
+
             AsyncTask.execute {
                 try {
                     transformed = (activity as ScanActivity).getBWBitmap(original)

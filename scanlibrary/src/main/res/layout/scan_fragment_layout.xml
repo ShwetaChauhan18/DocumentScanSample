@@ -10,10 +10,10 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/bottom_background_color"
+        android:background="@drawable/btn_ripple_effect"
         android:orientation="horizontal"
         android:padding="@dimen/bottom_bar_padding"
-        android:text="@string/scan"/>
+        android:text="@string/scan" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -42,8 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:visibility="gone"></com.scanlibrary.PolygonView>
+            android:visibility="gone" />
     </FrameLayout>
-
 
 </RelativeLayout>

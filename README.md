@@ -7,7 +7,7 @@
 ### Demo
 ------------------------
 
-![demo_data](https://github.com/ShwetaChauhan18/DocumentScanSample/blob/master/images/scan_demo.gif)
+![demo_data](https://github.com/ShwetaChauhan18/DocumentScanSample/blob/main/images/scan_lib_demo.gif)
 
 ### Credits
 ------------------------

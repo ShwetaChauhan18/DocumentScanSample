@@ -11,7 +11,7 @@
 
 ### Credits
 ------------------------
-- This library was inspired by [AndroidScannerDemo](https://github.com/jhansireddy/AndroidScannerDemo)
+- This Sample was inspired by [AndroidScannerDemo](https://github.com/jhansireddy/AndroidScannerDemo)
 
 ## Find this Sample useful? :heart:
 Support it by joining __[stargazers](https://github.com/ShwetaChauhan18/DocumentScanSample/stargazers)__ for this repository. :star:

@@ -27,9 +27,12 @@ class ResultFragmentKotlin : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.result_layout, null)
+        return inflater.inflate(R.layout.result_layout, null)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         init()
-        return view
     }
 
     private fun init() {
@@ -49,7 +52,7 @@ class ResultFragmentKotlin : Fragment() {
             showProgressDialog(resources.getString(R.string.applying_filter))
             AsyncTask.execute {
                 try {
-                    transformed = (activity as ScanActivityKotlin).getMagicColorBitmap(original)
+                    transformed = (activity as ScanActivity).getMagicColorBitmap(original)
                 } catch (e: OutOfMemoryError) {
                     activity?.runOnUiThread {
                         transformed = original
@@ -71,7 +74,7 @@ class ResultFragmentKotlin : Fragment() {
             showProgressDialog(resources.getString(R.string.applying_filter))
             AsyncTask.execute {
                 try {
-                    transformed = (activity as ScanActivityKotlin).getGrayBitmap(original)
+                    transformed = (activity as ScanActivity).getGrayBitmap(original)
                 } catch (e: OutOfMemoryError) {
                     activity?.runOnUiThread {
                         transformed = original
@@ -93,7 +96,7 @@ class ResultFragmentKotlin : Fragment() {
             showProgressDialog(resources.getString(R.string.applying_filter))
             AsyncTask.execute {
                 try {
-                    transformed = (activity as ScanActivityKotlin).getBWBitmap(original)
+                    transformed = (activity as ScanActivity).getBWBitmap(original)
                 } catch (e: OutOfMemoryError) {
                     activity?.runOnUiThread {
                         transformed = original

@@ -6,15 +6,18 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.scanlibrary.Utils.getPhotoFileUri
 
 class ScanActivityKotlin : AppCompatActivity(), ComponentCallbacks2, IScanner {
 
     private var scanner: IScanner? = null
+    private var mRecordFilePath: String? = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.scan_layout)
         this.scanner = this
+        mRecordFilePath = getPhotoFileUri("scan_document", this)
         initScreen()
     }
 
@@ -36,6 +39,7 @@ class ScanActivityKotlin : AppCompatActivity(), ComponentCallbacks2, IScanner {
         val fragment = ScanFragmentKotlin()
         val bundle = Bundle()
         bundle.putParcelable(ScanConstants.SELECTED_BITMAP, uri)
+        bundle.putString(ScanConstants.IMAGE_BASE_PATH_EXTRA, mRecordFilePath)
         fragment.arguments = bundle
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.add(R.id.content, fragment)

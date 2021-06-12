@@ -7,14 +7,15 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.scanlibrary.ScanActivityKotlin;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.scanlibrary.ScanActivity;
 import com.scanlibrary.ScanConstants;
 
 import java.io.IOException;
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void startScan(int preference) {
-        Intent intent = new Intent(this, ScanActivityKotlin.class);
+        Intent intent = new Intent(this, ScanActivity.class);
         intent.putExtra(ScanConstants.OPEN_INTENT_PREFERENCE, preference);
         startActivityForResult(intent, REQUEST_CODE);
     }

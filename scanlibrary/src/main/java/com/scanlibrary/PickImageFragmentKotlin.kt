@@ -40,9 +40,7 @@ class PickImageFragmentKotlin : Fragment() {
     private lateinit var getContentRequestCamera: ActivityResultLauncher<Intent>
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.pick_image_fragment, null)
     }
@@ -125,7 +123,7 @@ class PickImageFragmentKotlin : Fragment() {
         var bitmap: Bitmap? = null
         if (result.resultCode == Activity.RESULT_OK) {
             when (requestCode) {
-                ScanConstants.PICKFILE_REQUEST_CODE -> bitmap = getBitmap(imageUri)
+                ScanConstants.PICKFILE_REQUEST_CODE -> bitmap = getBitmap(result.data?.data)
 
                 ScanConstants.START_CAMERA_REQUEST_CODE -> bitmap = getBitmap(imageUri)
 
@@ -138,11 +136,9 @@ class PickImageFragmentKotlin : Fragment() {
 
     fun openCamera() {
         if (ContextCompat.checkSelfPermission(
-                requireActivity(),
-                Manifest.permission.CAMERA
+                requireActivity(), Manifest.permission.CAMERA
             ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
-                requireActivity(),
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
+                requireActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE
             ) == PackageManager.PERMISSION_GRANTED
         ) {
             val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -209,13 +205,11 @@ class PickImageFragmentKotlin : Fragment() {
     }
 
     override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String?>,
-        grantResults: IntArray
+        requestCode: Int, permissions: Array<String?>, grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == MY_CAMERA_REQUEST_CODE) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
                 openCamera()
             } else {
                 Toast.makeText(activity, "camera permission denied", Toast.LENGTH_LONG).show()

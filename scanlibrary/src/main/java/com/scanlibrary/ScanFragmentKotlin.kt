@@ -38,7 +38,9 @@ class ScanFragmentKotlin : Fragment() {
         this.scanner = context
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.scan_fragment_layout, null)
     }
 
@@ -62,6 +64,10 @@ class ScanFragmentKotlin : Fragment() {
                 setBitmap(original!!)
             }
         }
+    }
+
+    private fun getImagePath(): String? {
+        return if (arguments != null) arguments?.getString(ScanConstants.IMAGE_BASE_PATH_EXTRA) else ""
     }
 
     private fun getBitmap(): Bitmap? {
@@ -88,7 +94,9 @@ class ScanFragmentKotlin : Fragment() {
         polygonView.points = pointFs
         polygonView.visibility = View.VISIBLE
         val padding = resources.getDimension(R.dimen.scanPadding).toInt()
-        val layoutParams = FrameLayout.LayoutParams(tempBitmap.width + 2 * padding, tempBitmap.height + 2 * padding)
+        val layoutParams = FrameLayout.LayoutParams(
+            tempBitmap.width + 2 * padding, tempBitmap.height + 2 * padding
+        )
         layoutParams.gravity = Gravity.CENTER
         polygonView.layoutParams = layoutParams
     }
@@ -99,7 +107,7 @@ class ScanFragmentKotlin : Fragment() {
     }
 
     private fun getContourEdgePoints(tempBitmap: Bitmap): List<PointF> {
-        val points: FloatArray? = (activity as ScanActivityKotlin?)?.getPoints(tempBitmap)
+        val points: FloatArray? = (activity as ScanActivity?)?.getPoints(tempBitmap)
         val pointFs: MutableList<PointF> = ArrayList()
 
         points?.let { point ->
@@ -129,7 +137,9 @@ class ScanFragmentKotlin : Fragment() {
         return outlinePoints
     }
 
-    private fun orderedValidEdgePoints(tempBitmap: Bitmap, pointFs: List<PointF>): Map<Int, PointF> {
+    private fun orderedValidEdgePoints(
+        tempBitmap: Bitmap, pointFs: List<PointF>
+    ): Map<Int, PointF> {
         var orderedPoints = polygonView!!.getOrderedPoints(pointFs)
         if (!polygonView!!.isValidShape(orderedPoints)) {
             orderedPoints = getOutlinePoints(tempBitmap)
@@ -138,7 +148,8 @@ class ScanFragmentKotlin : Fragment() {
     }
 
     private fun showErrorDialog() {
-        val fragment = SingleButtonDialogFragment(R.string.ok, getString(R.string.cantCrop), "Error", true)
+        val fragment =
+            SingleButtonDialogFragment(R.string.ok, getString(R.string.cantCrop), "Error", true)
         val fm = childFragmentManager
         fragment.show(fm, SingleButtonDialogFragment::class.java.toString())
     }
@@ -149,7 +160,11 @@ class ScanFragmentKotlin : Fragment() {
 
     private fun scaledBitmap(bitmap: Bitmap, width: Int, height: Int): Bitmap {
         val m = Matrix()
-        m.setRectToRect(RectF(0f, 0f, bitmap.width.toFloat(), bitmap.height.toFloat()), RectF(0f, 0f, width.toFloat(), height.toFloat()), Matrix.ScaleToFit.CENTER)
+        m.setRectToRect(
+            RectF(0f, 0f, bitmap.width.toFloat(), bitmap.height.toFloat()),
+            RectF(0f, 0f, width.toFloat(), height.toFloat()),
+            Matrix.ScaleToFit.CENTER
+        )
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, m, true)
     }
 
@@ -170,7 +185,9 @@ class ScanFragmentKotlin : Fragment() {
 
         Log.d("", "Points($x1,$y1)($x2,$y2)($x3,$y3)($x4,$y4)")
 
-        return (activity as ScanActivityKotlin?)?.getScannedBitmap(original, x1, y1, x2, y2, x3, y3, x4, y4)
+        return (activity as ScanActivity?)?.getScannedBitmap(
+            original, x1, y1, x2, y2, x3, y3, x4, y4
+        )
     }
 
     private fun scanAsyncTaskAlter(points: Map<Int?, PointF?>): Bitmap? {

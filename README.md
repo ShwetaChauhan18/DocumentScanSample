@@ -7,7 +7,7 @@
 ### Demo
 ------------------------
 
-<img src="/images/scan_lib_demo.gif?raw=true" width="500" height="900">
+![demo_data](https://github.com/ShwetaChauhan18/DocumentScanSample/blob/main/images/scan_lib_demo.gif)
 
 ### Credits
 ------------------------

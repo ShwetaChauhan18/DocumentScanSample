@@ -7,8 +7,7 @@
 ### Demo
 ------------------------
 
-![demo_data]
-<img src="/images/scan_lib_demo.gif?raw=true" width="250px" height="250px">
+<img src="/images/scan_lib_demo.gif?raw=true" width="800" height="1500">
 
 ### Credits
 ------------------------
